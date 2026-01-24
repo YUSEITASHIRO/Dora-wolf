@@ -42,6 +42,9 @@ export function changePhase(newPhase) {
   console.log(`Phase changed to: ${newPhase}`);
 
   switch (newPhase) {
+    case "CONFIG":
+      UIManager.renderConfigPhase(); // ★これを追加
+      break;
     case "ROLE_CONFIRM":
       UIManager.renderRoleConfirmPhase();
       break;
@@ -143,4 +146,7 @@ function shuffleArray(array) {
   }
   return array;
 }
-function createRolePool(config) { /* Config画面の入力から役職IDの配列を作成 */ return []; }
+function createRolePool(config) { 
+  // Config画面の入力から役職IDの配列を作成（まずは仮で4人分の役職を入れる）
+  return ["GIAN", "SHIZUKA", "DORAEMON", "NOBITA"]; 
+}
