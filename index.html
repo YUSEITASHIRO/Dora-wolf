@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ドラえもん人狼</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app">
+        <div class="loading">ゲームを読み込み中...</div>
+    </div>
+
+    <script type="module">
+        import { UIManager } from './js/uiManager.js';
+        import { changePhase } from './js/main.js';
+
+        // ※本来はここにConfig画面の描画処理が入りますが、
+        // 今回はすぐにConfigフェーズのモックを描画してスタートさせます。
+        window.onload = () => {
+            // 仮のConfig画面を描画（本来は UIManager.renderConfigPhase() などを作成）
+            document.getElementById('app').innerHTML = `
+                <div class="config-screen">
+                    <h1>ドラえもん人狼</h1>
+                    <p>スマホを回して遊ぶターン制ゲームです</p>
+                    <button id="start-btn" class="primary-btn">ゲームスタート(仮)</button>
+                </div>
+            `;
+            
+            // 仮のプレイヤーデータでゲームを開始するトリガー
+            document.getElementById('start-btn').addEventListener('click', () => {
+                import('./js/main.js').then(module => {
+                    // 仮のプレイヤー4人でゲーム開始
+                    module.startGame(
+                        { talkTimeLimit: 10, isFirstDayVote: false }, 
+                        ["プレイヤーA", "プレイヤーB", "プレイヤーC", "プレイヤーD"]
+                    );
+                });
+            });
+        };
+    </script>
+</body>
+</html>

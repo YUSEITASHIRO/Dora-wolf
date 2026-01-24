@@ -1,0 +1,142 @@
+/* style.css */
+:root {
+    --primary-blue: #00AEEF; /* ドラえもんブルー */
+    --accent-red: #E83828;   /* 首輪・しっぽの赤 */
+    --accent-yellow: #FFD400;/* 鈴の黄色 */
+    --bg-color: #F5F7FA;
+    --text-color: #333333;
+    --white: #FFFFFF;
+    --danger-red: #D32F2F;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    /* スマホ画面の高さを基準にする */
+    min-height: 100vh; 
+}
+
+/* アプリ全体のコンテナ（PCで見てもスマホサイズに見えるように制限） */
+#app {
+    width: 100%;
+    max-width: 450px; /* スマホの最大幅 */
+    background-color: var(--white);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* --- 共通のタイポグラフィと要素 --- */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-blue);
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* --- ボタンデザイン --- */
+button {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--white);
+    background-color: var(--primary-blue);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 0 #0089bd; /* 押し込み感のある立体ボタン */
+    cursor: pointer;
+    transition: all 0.1s ease;
+    appearance: none;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+button#next-player-btn { background-color: var(--accent-yellow); color: #333; box-shadow: 0 4px 0 #ccaa00;}
+button#start-talk-btn, button#action-btn { background-color: var(--accent-red); box-shadow: 0 4px 0 #b32b1f;}
+
+/* --- フォーム要素（セレクトボックス） --- */
+select {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    border: 2px solid var(--primary-blue);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: var(--white);
+    appearance: none;
+    text-align: center;
+}
+
+/* --- 各フェーズの個別スタイル --- */
+/* 会話フェーズ */
+.talk-screen #timer {
+    text-align: center;
+    font-size: 3.5em;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 20px 0;
+    font-variant-numeric: tabular-nums; /* 数字の幅を固定 */
+}
+
+/* 神成さんの警告アラート */
+.alert {
+    background-color: #ffebee;
+    color: var(--danger-red);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    border-left: 5px solid var(--danger-red);
+}
+
+/* リスト表示（生存者・気絶者） */
+ul {
+    list-style: none;
+    margin-bottom: 20px;
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 10px;
+}
+
+ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+#dead-list li {
+    color: #999;
+    text-decoration: line-through; /* 気絶者は打ち消し線 */
+}
+
+/* 判定フェーズ */
+.judge-screen h1 {
+    font-size: 2.5em;
+    color: var(--accent-red);
+}
