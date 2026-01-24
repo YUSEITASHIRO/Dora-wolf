@@ -67,7 +67,7 @@ export function changePhase(newPhase) {
   }
 }
 
-// 夜の行動の解決 (Part1のものを完全版に)
+// 夜の行動の解決
 function resolveNightActions() {
   const queue = GameState.nightActionsQueue;
 
@@ -126,10 +126,10 @@ function checkWinConditions() {
     if (yasuo && yasuo.isAlive) return "THIRD_HARUO"; // 安雄が生存していれば勝利
   }
 
-  [cite_start]// 人狼の勝利条件: 人狼の人数 >= 村人の人数 [cite: 18]
+  // 人狼の勝利条件: 人狼の人数 >= 村人の人数
   if (wolfCount >= villagerCount) return "WOLF";
 
-  [cite_start]// 村人の勝利条件: 人狼生存0 [cite: 19]
+  // 村人の勝利条件: 人狼生存0
   if (wolfCount === 0) return "VILLAGER";
 
   return null; // ゲーム続行
