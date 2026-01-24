@@ -14,7 +14,7 @@ export const UIManager = {
 
     const renderConfirmScreen = () => {
       const p = GameState.players[currentPlayerIndex];
-      [cite_start]// 役職表示前の確認画面 [cite: 8]
+      // 役職表示前の確認画面
       appRoot.innerHTML = `
         <div class="confirm-screen">
           <h2>${p.name} さんですか？</h2>
@@ -51,7 +51,7 @@ export const UIManager = {
   renderTalkPhase(hasKaminari) {
     let timeLeft = GameState.config.talkTimeLimit;
     
-    const kaminariWarning = hasKaminari ? `<p class="alert">⚠️ この中に神成さんがいる...</p>` : ""; [cite_start]// [cite: 91]
+    const kaminariWarning = hasKaminari ? `<p class="alert">⚠️ この中に神成さんがいる...</p>` : "";
 
     appRoot.innerHTML = `
       <div class="talk-screen">
@@ -79,7 +79,7 @@ export const UIManager = {
       document.getElementById('timer').innerText = formatTime(timeLeft);
       if (timeLeft <= 0) {
         clearInterval(timerInterval);
-        [cite_start]playAlarmSound(); // [cite: 11] アラーム音再生
+        playAlarmSound(); // アラーム音再生
       }
     }, 1000);
 
@@ -87,7 +87,7 @@ export const UIManager = {
     document.getElementById('end-talk-btn').addEventListener('click', () => {
       clearInterval(timerInterval);
       if (GameState.turn === 1 && !GameState.config.isFirstDayVote) {
-        [cite_start]changePhase("NIGHT_ACTION"); // 初日投票なしなら能力ターンへ [cite: 11]
+        changePhase("NIGHT_ACTION"); // 初日投票なしなら能力ターンへ
       } else {
         changePhase("VOTE");
       }
@@ -144,7 +144,7 @@ export const UIManager = {
         <h3>全プレイヤーの正体</h3>
         <ul>
           ${GameState.players.map(p => {
-            [cite_start]// のび太やコピーロボットの履歴表示 [cite: 21]
+            // のび太やコピーロボットの履歴表示
             let roleText = ROLES[p.realRole].name;
             if (p.realRole !== p.displayRole) roleText += ` (表示: ${ROLES[p.displayRole].name})`;
             return `<li>${p.name}: ${roleText} - ${p.isAlive ? "生存" : "気絶"}</li>`;
@@ -156,12 +156,17 @@ export const UIManager = {
 
     document.getElementById('retry-btn').addEventListener('click', () => changePhase("CONFIG"));
   }
-};
+}; // ← UIManagerオブジェクトをここで正しく閉じました
 
-// ヘルパー関数
+// ==========================================
+// ヘルパー関数 (UIManagerの外に定義)
+// ==========================================
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m}:${s < 10 ? '0' : ''}${s}`;
 }
-function playAlarmSound() { /* Web Audio API等で音を鳴らす */ }
+
+function playAlarmSound() { 
+  /* Web Audio API等で音を鳴らす処理を今後追加できます */ 
+}
