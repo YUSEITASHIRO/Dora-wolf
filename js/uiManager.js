@@ -7,7 +7,37 @@ import { ROLES } from './roles.js';
 const appRoot = document.getElementById('app');
 
 export const UIManager = {
+// --- 0. Configフェーズ (設定画面) --- ★これを追加
+  renderConfigPhase() {
+    appRoot.innerHTML = `
+      <div class="config-screen">
+        <h1>ドラえもん人狼</h1>
+        <p>プレイヤー名を入力してください（4人プレイ）</p>
+        <div style="margin-bottom: 20px;">
+          <input type="text" id="p1-name" value="プレイヤーA" style="width:100%; padding:10px; margin-bottom:5px;">
+          <input type="text" id="p2-name" value="プレイヤーB" style="width:100%; padding:10px; margin-bottom:5px;">
+          <input type="text" id="p3-name" value="プレイヤーC" style="width:100%; padding:10px; margin-bottom:5px;">
+          <input type="text" id="p4-name" value="プレイヤーD" style="width:100%; padding:10px; margin-bottom:5px;">
+        </div>
+        <button id="start-game-btn">ゲームスタート</button>
+      </div>
+    `;
 
+    document.getElementById('start-game-btn').addEventListener('click', () => {
+      import('./main.js').then(module => {
+        // 入力された名前を取得してゲームを開始
+        const names = [
+          document.getElementById('p1-name').value,
+          document.getElementById('p2-name').value,
+          document.getElementById('p3-name').value,
+          document.getElementById('p4-name').value
+        ];
+        // タイマー300秒(5分)、初日投票なしでスタート
+        module.startGame({ talkTimeLimit: 300, isFirstDayVote: false }, names);
+      });
+    });
+  },
+  
   // --- 1. 能力確認フェーズ (手渡しUI) ---
   renderRoleConfirmPhase() {
     let currentPlayerIndex = 0;
