@@ -1,6 +1,6 @@
 // js/uiManager.js
 import { GameState } from './gameState.js';
-import { changePhase } from './main.js';
+import { changePhase } from './main.js'; // ← ここから registerNightAction を削除しました
 import { ROLES } from './roles.js';
 
 // HTMLのルート要素を取得 (例: <div id="app"></div>)
@@ -170,4 +170,3 @@ function formatTime(seconds) {
 function playAlarmSound() { 
   /* Web Audio API等で音を鳴らす処理を今後追加できます */ 
 }
-
