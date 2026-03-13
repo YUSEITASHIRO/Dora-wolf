@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ドラ狼 - ドラえもん人狼ゲーム</title>
+  <meta name="description" content="ドラえもんを題材にしたオフライン人狼ゲーム。スマホを回して遊べます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="app">
+    <header id="app-header">
+      <h1 id="app-title">🔔 ドラ狼</h1>
+      <p id="app-subtitle">ドラえもん人狼ゲーム</p>
+    </header>
+    <main id="main-content">
+      <!-- All screens rendered dynamically by game.js -->
+    </main>
+  </div>
+  <div id="alarm-overlay" class="hidden">
+    <div class="alarm-content">
+      <div class="alarm-icon">⏰</div>
+      <p>時間です！</p>
+      <button id="alarm-stop-btn" class="btn btn-danger" onclick="game.stopAlarm()">アラームを止める</button>
+    </div>
+  </div>
+  <script src="roles.js"></script>
+  <script src="engine.js"></script>
+  <script src="ui.js"></script>
+  <script src="abilities-ui.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
